@@ -14,8 +14,6 @@ make:
 	ctags -R
 	(cd boot;make)
 	(cd kernel;make)
-#	(cd mm;make)
-#	(cd task;make)
 	(cd cstd;make)
 $(IMG):$(SETUP) $(SYS)
 $(SYS):$(SYS_O) $(C_O)
@@ -28,7 +26,5 @@ $(SETUP):$(SETUP_O)
 clear:
 	rm -f $(SETUP) $(SYS) tags
 	(cd boot;make clear)
-#	(cd task;make clear)
 	(cd kernel;make clear)
-#	(cd mm;make clear)
 	(cd cstd;make clear)
