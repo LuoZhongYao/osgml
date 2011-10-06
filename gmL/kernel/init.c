@@ -48,22 +48,30 @@ int main(void){
     sched_init();
     //sti();
     move_user_mode();
-    if(syscall(FORK,0,0,0)!=0){
-        if(syscall(FORK,0,0,0)!=0){
-            while(1)
-                printk("OK\n");
+    if(fork()!=0){
+        if(fork()!=0){
+            printk("This sever reg is \e!", reg_msg(cur_thread,1));
+            int i=0;
+            while(1){
+                for(int sleep=100;sleep;sleep--);
+                i=receiv();
+                printk("MSG:->\e\n",i);
+            }
         }
-        while(1)
-            printk("This father!\n");
+        printk("clent!");
+        int i=0;
+        while(1){
+            i++;
+            send(1);
+            if(i%10)
+                send(2);
+        }
     }
-    if(syscall(FORK,0,0,0)!=0){
-        while(1)
-           test();
+    int i=0;
+    reg_msg(cur_thread,2);
+    while(1){
+        i=receiv();
+        printk("MSG:\e\n",i);
     }
-    while(1)
-        printk("I'm dea!\n");
     asm("wait");
-}
-void test(void){
-    printk("This test!\nI love M!\n");
 }

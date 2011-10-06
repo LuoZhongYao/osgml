@@ -1,4 +1,4 @@
-IMG=gmL.img
+IMG=gmL.hd
 .PHONY:clear start make
 LD_OPT = --oformat binary -m elf_i386 
 LD = ld
@@ -22,6 +22,8 @@ $(SYS):$(SYS_O) $(C_O)
 $(SETUP):$(SETUP_O)
 	$(LD) $^ -o $@ $(LD_OPT) -Ttext 0x7e00
 	dd if=$@ of=$(IMG) seek=1 bs=1b conv=notrunc 
+create:
+	(cd boot;make create)
 
 clear:
 	rm -f $(SETUP) $(SYS) tags

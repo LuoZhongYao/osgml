@@ -808,12 +808,12 @@ INT 1FH —指向图形字符模式表指针
 1.数据结构（Data Structure)
 该数据结构是提供给扩展INT 13H使用的，它是建立在逻辑扇号之上的，具体结构如下：
 
-disk_addr_pkt struc ; 磁盘地址包
-packet_size   db   16   ; 磁盘参数包的尺寸，必须为10H
-reserved db   0   ; 保留，必须为零
-block_count   dw   ?   ; 传输的扇区数
-buffer_addr   dd   ?   ; 内存缓冲区地址（段：偏移）
-block_num dq   ?   ; 起始绝对扇区号（即起始扇区的LBA号码）
+disk_addr_pkt struc         ; 磁盘地址包
+packet_size   db        16  ; 磁盘参数包的尺寸，必须为10H
+reserved db   0             ; 保留，必须为零
+block_count   dw        ?   ; 传输的扇区数
+buffer_addr   dd        ?   ; 内存缓冲区地址（段：偏移）
+block_num     dq        ?   ; 起始绝对扇区号（即起始扇区的LBA号码）
 disk_addr_pkt ends
 
 结构中前两项是固定的，用到的是后三项。起始绝对扇区号即前面讲到的逻辑扇区号，从0开始编号。

@@ -7,10 +7,11 @@ LD_OPT = --oformat binary -Ttext 0x7c00 -m elf_i386
 #写映像的命令
 WR = dd
 #创建映像的选项
-CREATE_IMG_OPT = bs=1440K conv=sync count=1
+CREATE_IMG_OPT = bs=10321920c conv=sync count=1
 #写引导命令
 WR_BOOT_OPT = conv=notrunc
-IMG = ../gmL.img
+#IMG = ../gmL.img
+IMG = ../gmL.hd
 $(IMG):bootload
 	$(WR) if=$^ of=$@ $(WR_BOOT_OPT)
 bootload:boot.o

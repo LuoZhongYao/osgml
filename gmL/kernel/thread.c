@@ -11,7 +11,6 @@ pid_t   get_free_thread(void){
     if(last_thread>=THREAD_LEN)
         last_thread=0;
     for(;last_thread<THREAD_LEN;last_thread++){
-        //    printk("thread.c:get_free_thread:\e\n",(unsigned)(&thread_map));
         if(!thread_map[last_thread]){
             thread_map[last_thread]=1;
             return  last_thread++;
